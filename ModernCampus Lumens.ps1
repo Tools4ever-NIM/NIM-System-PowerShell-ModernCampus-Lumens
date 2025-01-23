@@ -1085,7 +1085,7 @@ function Idm-LearnerCustomDatasSet {
         
         # Call API
         $response = $client.AddAndUpdateLearner($system_params.apikey, $xmlBody)
-        #Write-Host $xmlBody
+
         Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
     }
     Log info ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
@@ -1171,7 +1171,7 @@ function Idm-InstructorCustomDatasSet {
         
         # Call API
         $response = $client.AddAndUpdateInstructor($system_params.apikey, $xmlBody)
-        #Write-Host $xmlBody
+        
         Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
     }
     Log info ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
@@ -1243,46 +1243,18 @@ function New-ModernCampusLumensConnection {
     try {
         $proxy = New-WebServiceProxy -Uri $wsdlUrl -UseDefaultCredential
 
-        <#  2024-01-26 - T4e JA
-            HACK - Adding a hack to adjust the target URL.  The Test Lumens environment
-                expects calls to the v81 endpoints, but the WSDL is still returning
-                the V80 endpoints.  This can be gotten around by changing the Url in the proxy.
-            2024-07-01 - T4e JA - Removing, since Lumens upped to always be 81.
-        #>
-        #$proxy.Url = $proxy.Url -replace 'v81','v80'
-
-        <#if($system_params.use_proxy)
+        # Proxy code not complete or tested.  Leaving this commented out for now.
+        <#if($systemparams.use_proxy)
         {
-            $splat["Proxy"] = $system_params.proxy_address
+            $splat["Proxy"] = $systemparams.proxy_address
 
-            if($system_params.use_proxy_credentials)
+            if($systemparams.use_proxy_credentials)
             {
-                $splat["proxyCredential"] = New-Object System.Management.Automation.PSCredential ($system_params.proxy_username, (ConvertTo-SecureString $system_params.proxy_password -AsPlainText -Force) )
-            }
-        }#>
-	}
-	<#catch [System.Net.WebException] {
-       
-        try {
-            $reader = New-Object System.IO.StreamReader -ArgumentList $_.Exception.Response.GetResponseStream()
-            $response = $reader.ReadToEnd()
-            $reader.Close()
-
-            $result = ([xml]$response).Envelope.Body.InnerXml
-
-            # Log the first Workday Exception
-            if ($result.InnerXml.StartsWith('<SOAP-ENV:Fault ')) {
-                $message = "Error : $($o.Xml.Fault.faultcode): $($o.Xml.Fault.faultstring)"
-                Log error $message
-                Write-Error $message
+                $splat["proxyCredential"] = New-Object System.Management.Automation.PSCredential ($systemparams.proxy_username, (ConvertTo-SecureString $systemparams.proxy_password -AsPlainText -Force) )
             }
         }
-        catch {}
-        
-        $message = "Error : $($_)"
-        Log error $message
-        Write-Error $_
-	}#>
+        #>
+	}
     catch {
         $message = "Error : $($_)"
         Log error $message
@@ -1381,27 +1353,7 @@ function Get-InstructorsXML {
 
         do {
             Log info ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
-            <#
-            $xmlRequest = '<?xml version="1.0" encoding="ISO-8859-1"?>
-                            <Wrapper>
-                            <Request StartRow="{0}" EndRow="{1}">
-                                <Criteria>
-                                <AltSystemInstructorID><![CDATA[]]></AltSystemInstructorID>
-                                <InstructorID><![CDATA[]]></InstructorID>
-                                <LastName><![CDATA[]]></LastName>
-                                <FirstName><![CDATA[]]></FirstName>
-                                <Email><![CDATA[]]></Email>
-                                <CreateDateBegin><![CDATA[]]></CreateDateBegin>
-                                <CreateDateEnd><![CDATA[]]></CreateDateEnd>
-                                <ModifyDateBegin><![CDATA[]]></ModifyDateBegin>
-                                <ModifyDateEnd><![CDATA[]]></ModifyDateEnd>
-                                <LastTransferDateBegin><![CDATA[]]></LastTransferDateBegin>
-                                <LastTransferDateEnd><![CDATA[]]></LastTransferDateEnd>
-                                <Status><![CDATA[]]></Status>
-                                </Criteria>
-                            </Request>
-                            </Wrapper>' -f $i, ($i+$system_params.pagesize)  # <NewOrModifiedSinceLastTransfer><![CDATA[Yes]]></NewOrModifiedSinceLastTransfer>
-                        #>
+ 
             $xmlRequest = '<?xml version="1.0" encoding="ISO-8859-1"?>
                             <Wrapper>
                                 <Request StartRow="{0}" EndRow="{1}">
@@ -1410,7 +1362,7 @@ function Get-InstructorsXML {
                                         <CreateDateEnd><![CDATA[2078-01-01]]></CreateDateEnd>
                                     </Criteria>
                                 </Request>
-                            </Wrapper>' -f $i, ($i+$system_params.pagesize)  # <NewOrModifiedSinceLastTransfer><![CDATA[Yes]]></NewOrModifiedSinceLastTransfer>
+                            </Wrapper>' -f $i, ($i+$system_params.pagesize) 
 
             $response = $client.GetInstructorDetails($system_params.apikey, $xmlRequest)
             Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
@@ -1472,7 +1424,7 @@ function Get-ClassDetailsXML {
                                         <CreateDateEnd><![CDATA[2078-01-01]]></CreateDateEnd>
                                     </Criteria>
                                 </Request>
-                            </Wrapper>' -f $i, ($i+$system_params.pagesize)  # <NewOrModifiedSinceLastTransfer><![CDATA[Yes]]></NewOrModifiedSinceLastTransfer>
+                            </Wrapper>' -f $i, ($i+$system_params.pagesize)  
             $response = $client.GetClassDetails($system_params.apikey, $xmlRequest)
             Log info ("Response: {0}" -f ([xml]$response).Wrapper.description)
             $pageCount = ([xml]$response).Wrapper.ClassDetails.Classes.count
@@ -1497,5 +1449,3 @@ function Get-ClassDetailsXML {
         Write-Error $_
     }
 }
-
-# (([xml]$response).Wrapper.ResponseData.ClassDetails | ? {$_.Classes.TotalSeats -ne $_.Classes.RemainingSeats})[10].classes.RosterDetails.Learner[0]
