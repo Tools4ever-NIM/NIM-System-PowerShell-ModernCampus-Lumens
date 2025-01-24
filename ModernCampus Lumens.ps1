@@ -1006,7 +1006,7 @@ function Idm-ClassDetailsCustomDatasRead {
 
         foreach($item in ($Global:ClassDetails.XML | Where-Object {$_.CustomData.HasChildNodes -eq 'true'})) {
             
-            foreach($cd in $item.CustomData.field) {
+            foreach($cd in $item.CustomData.FieldDetails) {
                 $obj = New-Object -TypeName PSObject -Property $hash_table
                 $obj.ClassID = $item.ClassID
                 $obj.FieldName = $cd.FieldName
