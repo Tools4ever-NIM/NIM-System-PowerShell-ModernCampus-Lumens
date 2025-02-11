@@ -1171,7 +1171,7 @@ function Idm-InstructorCustomDatasSet {
         
         # Call API
         $response = $client.AddAndUpdateInstructor($system_params.apikey, $xmlBody)
-        
+
         Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
     }
     Log info ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
@@ -1303,15 +1303,15 @@ function Get-LearnersXML {
                             </Wrapper>' -f $i, ($i+$system_params.pagesize)
             
             $response = $client.GetLearnerDetails($system_params.apikey, $xmlRequest)
-            Log info ("Response: {0}" -f ([xml]$response).Wrapper.description)
-            $pageCount = ([xml]$response).Wrapper.LearnerDetail.Learners.count
+            Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
+            $pageCount = ([xml]$response).Wrapper.ResponseData.LearnerDetail.Learners.count
             
             # Set new Start Page
             $i += $pageCount
             
             # Add Learners to Global List.
             if($pageCount) {
-                $Global:Learners.XML.AddRange([array](([xml]$response).Wrapper.LearnerDetail))
+                $Global:Learners.XML.AddRange([array](([xml]$response).Wrapper.ResponseData.LearnerDetail))
             }
         } while ($pageCount -ge $system_params.pagesize)
 
@@ -1353,7 +1353,7 @@ function Get-InstructorsXML {
 
         do {
             Log info ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
- 
+
             $xmlRequest = '<?xml version="1.0" encoding="ISO-8859-1"?>
                             <Wrapper>
                                 <Request StartRow="{0}" EndRow="{1}">
@@ -1362,7 +1362,7 @@ function Get-InstructorsXML {
                                         <CreateDateEnd><![CDATA[2078-01-01]]></CreateDateEnd>
                                     </Criteria>
                                 </Request>
-                            </Wrapper>' -f $i, ($i+$system_params.pagesize) 
+                            </Wrapper>' -f $i, ($i+$system_params.pagesize)
 
             $response = $client.GetInstructorDetails($system_params.apikey, $xmlRequest)
             Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
@@ -1424,17 +1424,17 @@ function Get-ClassDetailsXML {
                                         <CreateDateEnd><![CDATA[2078-01-01]]></CreateDateEnd>
                                     </Criteria>
                                 </Request>
-                            </Wrapper>' -f $i, ($i+$system_params.pagesize)  
+                            </Wrapper>' -f $i, ($i+$system_params.pagesize)
             $response = $client.GetClassDetails($system_params.apikey, $xmlRequest)
-            Log info ("Response: {0}" -f ([xml]$response).Wrapper.description)
-            $pageCount = ([xml]$response).Wrapper.ClassDetails.Classes.count
+            Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
+            $pageCount = ([xml]$response).Wrapper.ResponseData.ClassDetails.Classes.count
             
             # Set new Start Page
             $i += $pageCount
             
             # Add to Global List.
             if($pageCount) {
-                $Global:ClassDetails.XML.AddRange([array](([xml]$response).Wrapper.ClassDetails.Classes))
+                $Global:ClassDetails.XML.AddRange([array](([xml]$response).Wrapper.ResponseData.ClassDetails.Classes))
             }
             
         } while ($pageCount -ge $system_params.pagesize)
