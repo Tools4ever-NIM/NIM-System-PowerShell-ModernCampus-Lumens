@@ -24,7 +24,7 @@ function Idm-SystemInfo {
         [string] $ConnectionParams
     )
 
-    Log info "-Connection=$Connection -TestConnection=$TestConnection -Configuration=$Configuration -ConnectionParams='$ConnectionParams'"
+    Log verbose "-Connection=$Connection -TestConnection=$TestConnection -Configuration=$Configuration -ConnectionParams='$ConnectionParams'"
 
     if ($Connection) {
         @(
@@ -122,7 +122,7 @@ function Idm-SystemInfo {
         @()
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-OnUnload {
@@ -480,7 +480,7 @@ function Idm-LearnersRead {
         [string] $FunctionParams
     )
     $Class = "Learner"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -523,7 +523,7 @@ function Idm-LearnersRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-LearnerCustomDatasRead {
@@ -533,7 +533,7 @@ function Idm-LearnerCustomDatasRead {
         [string] $FunctionParams
     )
     $Class = "LearnerCustomData"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -575,7 +575,7 @@ function Idm-LearnerCustomDatasRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-LearnerLoginDatasRead {
@@ -585,7 +585,7 @@ function Idm-LearnerLoginDatasRead {
         [string] $FunctionParams
     )
     $Class = "LearnerLoginData"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -633,7 +633,7 @@ function Idm-LearnerLoginDatasRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-InstructorsRead {
@@ -643,7 +643,7 @@ function Idm-InstructorsRead {
         [string] $FunctionParams
     )
     $Class = "Instructor"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
 
@@ -685,7 +685,7 @@ function Idm-InstructorsRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-InstructorLoginDatasRead {
@@ -695,7 +695,7 @@ function Idm-InstructorLoginDatasRead {
         [string] $FunctionParams
     )
     $Class = "InstructorLoginData"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -743,7 +743,7 @@ function Idm-InstructorLoginDatasRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-InstructorCustomDatasRead {
@@ -753,7 +753,7 @@ function Idm-InstructorCustomDatasRead {
         [string] $FunctionParams
     )
     $Class = "InstructorCustomData"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -795,7 +795,7 @@ function Idm-InstructorCustomDatasRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-ClassDetailsRead {
@@ -805,7 +805,7 @@ function Idm-ClassDetailsRead {
         [string] $FunctionParams
     )
     $Class = "ClassDetail"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
 
@@ -848,7 +848,7 @@ function Idm-ClassDetailsRead {
         
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-ClassDetailsLearnersRead {
@@ -858,7 +858,7 @@ function Idm-ClassDetailsLearnersRead {
         [string] $FunctionParams
     )
     $Class = "ClassDetailLearner"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -906,7 +906,7 @@ function Idm-ClassDetailsLearnersRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-ClassDetailsInstructorsRead {
@@ -916,7 +916,7 @@ function Idm-ClassDetailsInstructorsRead {
         [string] $FunctionParams
     )
     $Class = "ClassDetailInstructor"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -964,7 +964,7 @@ function Idm-ClassDetailsInstructorsRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 function Idm-ClassDetailsCustomDatasRead {
@@ -974,7 +974,7 @@ function Idm-ClassDetailsCustomDatasRead {
         [string] $FunctionParams
     )
     $Class = "ClassDetailCustomData"
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($GetMeta) {
         Get-ClassMetaData -SystemParams $SystemParams -Class $Class
@@ -1017,7 +1017,7 @@ function Idm-ClassDetailsCustomDatasRead {
         }
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 ##  Learner - Custom Data Create & Update
@@ -1030,7 +1030,7 @@ function Idm-LearnerCustomDatasSet {
         [string] $FunctionParams
     )
 
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
     $function_params = ConvertFrom-Json2 $FunctionParams
     $system_params   = ConvertFrom-Json2 $SystemParams
 
@@ -1086,9 +1086,9 @@ function Idm-LearnerCustomDatasSet {
         # Call API
         $response = $client.AddAndUpdateLearner($system_params.apikey, $xmlBody)
 
-        Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
+        Log verbose ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
     }
-    Log info ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
+    Log verbose ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
 }
 
 ##  Learner - Custom Data Create & Update
@@ -1101,7 +1101,7 @@ function Idm-InstructorCustomDatasSet {
         [string] $FunctionParams
     )
 
-    Log info "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
     $function_params = ConvertFrom-Json2 $FunctionParams
     $system_params   = ConvertFrom-Json2 $SystemParams
 
@@ -1172,9 +1172,9 @@ function Idm-InstructorCustomDatasSet {
         # Call API
         $response = $client.AddAndUpdateInstructor($system_params.apikey, $xmlBody)
 
-        Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
+        Log verbose ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData)
     }
-    Log info ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
+    Log verbose ("Done - Result: {0}" -f ($response | ConvertTo-Json -Depth 4))
 }
 
 
@@ -1238,7 +1238,7 @@ function New-ModernCampusLumensConnection {
     )
     
     $wsdlUrl = "https://{0}/ws/apiOpn.wsdl" -f $SystemParams.tenantId
-    Log info ("Reading SOAP WSDL [{0}]" -f $wsdlUrl)
+    Log verbose ("Reading SOAP WSDL [{0}]" -f $wsdlUrl)
 
     try {
         $proxy = New-WebServiceProxy -Uri $wsdlUrl -UseDefaultCredential
@@ -1291,7 +1291,7 @@ function Get-LearnersXML {
         $client = New-ModernCampusLumensConnection -SystemParams $system_params -FunctionParams $function_params -PassThru
 
         do {
-            Log info ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
+            Log verbose ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
             $xmlRequest = '<?xml version="1.0" encoding="ISO-8859-1"?>
                             <Wrapper>
                             <Request StartRow="{0}" EndRow="{1}">
@@ -1303,7 +1303,7 @@ function Get-LearnersXML {
                             </Wrapper>' -f $i, ($i+$system_params.pagesize)
             
             $response = $client.GetLearnerDetails($system_params.apikey, $xmlRequest)
-            Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
+            Log verbose ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
             $pageCount = ([xml]$response).Wrapper.ResponseData.LearnerDetail.Learners.count
             
             # Set new Start Page
@@ -1352,7 +1352,7 @@ function Get-InstructorsXML {
         $client = New-ModernCampusLumensConnection -SystemParams $system_params -FunctionParams $function_params -PassThru
 
         do {
-            Log info ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
+            Log verbose ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
 
             $xmlRequest = '<?xml version="1.0" encoding="ISO-8859-1"?>
                             <Wrapper>
@@ -1365,7 +1365,7 @@ function Get-InstructorsXML {
                             </Wrapper>' -f $i, ($i+$system_params.pagesize)
 
             $response = $client.GetInstructorDetails($system_params.apikey, $xmlRequest)
-            Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
+            Log verbose ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
             $pageCount = ([xml]$response).Wrapper.ResponseData.InstructorDetail.count
             
             # Set new Start Page
@@ -1415,7 +1415,7 @@ function Get-ClassDetailsXML {
         $client = New-ModernCampusLumensConnection -SystemParams $system_params -FunctionParams $function_params -PassThru
 
         do {
-            Log info ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
+            Log verbose ("Retrieving records {0} - {1}" -f $i, ($i+$system_params.pagesize))
             $xmlRequest = '<?xml version="1.0" encoding="ISO-8859-1"?>
                             <Wrapper>
                                 <Request StartRow="{0}" EndRow="{1}">
@@ -1426,7 +1426,7 @@ function Get-ClassDetailsXML {
                                 </Request>
                             </Wrapper>' -f $i, ($i+$system_params.pagesize)
             $response = $client.GetClassDetails($system_params.apikey, $xmlRequest)
-            Log info ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
+            Log verbose ("Response: {0}" -f ([xml]$response).Wrapper.ResponseData.description)
             $pageCount = ([xml]$response).Wrapper.ResponseData.ClassDetails.Classes.count
             
             # Set new Start Page
